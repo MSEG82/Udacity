@@ -49,11 +49,11 @@ class NearEarthObject:
         self.designation = info.get("pdes")
         self.name = info.get("name", "None")
         self.diameter = info.get("diameter", float("nan"))
-        self.hazardous = info.get("pha", 'N')
-        if self.hazardous == 'N':
-            self.hazardous = False
-        else:
-            self.hazardous = True
+        self.hazardous = info.get("pha")#, 'N')
+        #if self.hazardous == 'N':
+        #    self.hazardous = False
+        #else:
+        #    self.hazardous = True
         
       
         # Create an empty initial collection of linked approaches.
@@ -112,7 +112,8 @@ class CloseApproach:
         self.velocity = info.get("v_rel", float(0.0))
        
         # Create an attribute for the referenced NEO, originally None.
-        self.neo = info.get("neo", None)
+        #self.neo = info.get("neo", None)
+        self.neo = None
 
     @property
     def time_str(self):

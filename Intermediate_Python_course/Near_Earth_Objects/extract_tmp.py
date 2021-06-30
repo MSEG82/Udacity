@@ -44,10 +44,10 @@ def load_neos(neo_csv_path):
             if not row["name"]:
                 row["name"] = None
                 
-            #if  row["pha"] in ["N", ""]:
-            #    row["pha"] = False
-            #else: 
-            #    row["pha"] = True
+            if  row["pha"] in ["N", ""]:
+                row["pha"] = False
+            else: 
+                row["pha"] = True
             try: 
                 neo = NearEarthObject(pdes=row["pdes"], name=row["name"],diameter=row["diameter"],pha=row["pha"])
             except Exception as exc:
