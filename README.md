@@ -1,2 +1,2 @@
 # Udacity
-Intermediate_python
+Udacity Courses
