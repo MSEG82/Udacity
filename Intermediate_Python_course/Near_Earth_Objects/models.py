@@ -25,6 +25,7 @@ quirks of the data set, such as missing names and unknown diameters.
 You'll edit this file in Task 1.
 """
 from helpers import cd_to_datetime, datetime_to_str
+import math
 
 
 class NearEarthObject:
@@ -48,7 +49,8 @@ class NearEarthObject:
         self.designation = info.get("pdes")
         self.name = info.get("name", "None")
         self.diameter = info.get("diameter", float("nan"))
-        self.hazardous = info.get("pha", False)
+        self.hazardous = info.get("pha", 'N')
+        
       
         # Create an empty initial collection of linked approaches.
         self.approaches = []
@@ -65,9 +67,12 @@ class NearEarthObject:
     def __str__(self):
         """Return `str(self)`."""
         
-        peligroso = 'IS' if self.hazardous else 'IS NOT'
+        peligroso = 'IS' if self.hazardous == 'Y' else 'IS NOT'
+        
+        if math.isnan(self.diameter): 
+            return f"A NearEarthObject {self.fullname} {peligroso} potentially hazardous"
                         
-        return f"A NearEarthObject {self.fullname} has a diameter {self.diameter} and {peligroso} potentially hazardous"
+        return f"A NearEarthObject {self.fullname} has a diameter {self.diameter}km  and {peligroso} potentially hazardous"
 
     def __repr__(self):
         """Return `repr(self)`, a computer-readable string representation of this object."""
