@@ -50,6 +50,10 @@ class NearEarthObject:
         self.name = info.get("name", "None")
         self.diameter = info.get("diameter", float("nan"))
         self.hazardous = info.get("pha", 'N')
+        if self.hazardous == 'N':
+            self.hazardous == False
+        else:
+            self.hazardous == True
         
       
         # Create an empty initial collection of linked approaches.
@@ -67,7 +71,7 @@ class NearEarthObject:
     def __str__(self):
         """Return `str(self)`."""
         
-        peligroso = 'IS' if self.hazardous == 'Y' else 'IS NOT'
+        peligroso = 'IS' if self.hazardous else 'IS NOT'
         
         if math.isnan(self.diameter): 
             return f"A NearEarthObject {self.fullname} {peligroso} potentially hazardous"
