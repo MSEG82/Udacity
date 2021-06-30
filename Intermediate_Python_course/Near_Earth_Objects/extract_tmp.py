@@ -36,6 +36,18 @@ def load_neos(neo_csv_path):
     with open(neo_csv_path, 'r') as infile:
         reader = csv.DictReader(infile)
         for row in reader:
+            if not row["diameter"]:
+                row["diameter"] = float("nan")
+            else:
+                row["diameter"] = float(row["diameter"])
+
+            if not row["name"]:
+                row["name"] = None
+                
+            #if  row["pha"] in ["N", ""]:
+            #    row["pha"] = False
+            #else: 
+            #    row["pha"] = True
             try: 
                 neo = NearEarthObject(pdes=row["pdes"], name=row["name"],diameter=row["diameter"],pha=row["pha"])
             except Exception as exc:
