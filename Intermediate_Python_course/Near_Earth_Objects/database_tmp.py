@@ -48,19 +48,20 @@ class NEODatabase:
         self._neos = neos
         self._approaches = approaches
         
-        self.name_dict = {}
+        self.name_dic = {}
         self.designation_dic = {}
         
         for i in range(len(neos)):
-            self.name_dict[neos[i].name] = neos[i]
+            self.name_dic[neos[i].name] = neos[i]
             self.designation_dic[neos[i].designation] = neos[i]
         
                # TODO: Link together the NEOs and their close approaches.
         
         for approach in self._approaches:
-            if approach.designation in designation_dic:
+            neo = self.designation_dic[approach.designation]
+            if approach.designation in self.designation_dic:
                 neo.approaches.append(approach)
-                  
+                 
 
     def get_neo_by_designation(self, designation):
         """Find and return an NEO by its primary designation.
@@ -95,7 +96,7 @@ class NEODatabase:
         """
         # TODO: Fetch an NEO by its name.
         
-        return self.designation_dic.get(name.upper(), None)
+        return self.name_dic.get(name.upper(), None)
         
     def query(self, filters=()):
         """Query close approaches to generate those that match a collection of filters.

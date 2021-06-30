@@ -51,9 +51,9 @@ class NearEarthObject:
         self.diameter = info.get("diameter", float("nan"))
         self.hazardous = info.get("pha", 'N')
         if self.hazardous == 'N':
-            self.hazardous == False
+            self.hazardous = False
         else:
-            self.hazardous == True
+            self.hazardous = True
         
       
         # Create an empty initial collection of linked approaches.
@@ -104,13 +104,13 @@ class CloseApproach:
         :param info: A dictionary of excess keyword arguments supplied to the constructor.
         """
 
-        self._designation = info.get("des")         
+        self._designation = info.get("des", '')   
         self.time = info.get("cd", None)
         if self.time:
             self.time = cd_to_datetime(self.time)
         self.distance = info.get("dist", float(0.0))
         self.velocity = info.get("v_rel", float(0.0))
-
+       
         # Create an attribute for the referenced NEO, originally None.
         self.neo = info.get("neo", None)
 
@@ -129,6 +129,14 @@ class CloseApproach:
         """
         
         return datetime_to_str(self.time)
+    
+    @property
+    def designation(self):
+        """Get designation from imput
+        Returns: [str]: Returns self._designation
+        """
+        return self._designation
+    
 
     def __str__(self):
         """Return `str(self)`."""
