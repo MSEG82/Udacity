@@ -51,6 +51,8 @@ The output memes generated are saved in tmp/static folders when running "meme.py
 
 *static*: Stores the output memes generated when "app.py" script is run
 
+**Requirements**
+
 *Requirements.txt*
 This file contains the complete list of python dependencies used throughout this project
 
