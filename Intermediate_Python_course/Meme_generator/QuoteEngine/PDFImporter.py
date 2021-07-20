@@ -1,4 +1,4 @@
-"""This code serves for ingestion of info in TXT format."""
+"""This code serves for ingestion of info in PDF format."""
 
 
 from typing import List
@@ -10,31 +10,33 @@ from .IngestorInterface import IngestorInterface
 from .QuoteModel import QuoteModel
 
 
-class TXTImporter(IngestorInterface):
-    """Class TXTImporter.
+class PDFImporter(IngestorInterface):
+    """Class PDFImporter.
 
-    This class works with txt type files, parses the quote and author
+    This class works with pdf type files, parses the quote and author
     and returns the QuoteModel object.
     """
 
-    importaciones = ['txt']
+    importaciones = ['pdf']
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
-        """Parse TXT type file.
+        """Parse PDF type file.
 
         The classmethod 'parse()' extract the 'quote' and 'author'
         return the list of QuoteModel.
         Parameters:
-            path (str) : path of the TXT file.
+            path (str) : path of the pdf file.
         Return:
             List[QuoteModel object] : List of QuoteModel object
         """
         if not cls.can_ingest(path):
             raise Exception('Cannot Ingest Exception')
 
-        file_ref = open(path, "r")
+        tmp = f'./tmp/{random.randint(0,1000000)}.txt'
+        call = subprocess.call(['pdftotext', path, tmp])
 
+        file_ref = open(tmp, "r")
         quotes = []
         for line in file_ref.readlines():
             line = line.strip('\n\r').strip()
@@ -44,4 +46,5 @@ class TXTImporter(IngestorInterface):
                 quotes.append(new_quote)
 
         file_ref.close()
+        os.remove(tmp)
         return quotes

@@ -1,17 +1,11 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Jul 14 14:49:59 2021
-
-@author: U324451
-"""
-
 """Base class with constructor and representation definition."""
 
 
 class QuoteModel():
-    """Class definition to get the message body and message auther."""
+    """Class definition to get the message body and message author."""
 
     def __init__(self, body, author):
+        """Instantiate the QuoteModel class."""
         self.body = body
         self.author = author
 

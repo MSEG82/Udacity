@@ -1,29 +1,30 @@
-"""This code serves for ingestion of info in CSV format."""
+"""This code serves for ingestion of info in DOCX format."""
 
 
 from typing import List
-import pandas
+import docx
+
 from .IngestorInterface import IngestorInterface
 from .QuoteModel import QuoteModel
 
 
-class CSVImporter(IngestorInterface):
-    """Class CSVImporter.
+class DocxImporter(IngestorInterface):
+    """Class DocxImporter.
 
-    This class works with csv type files, parses the quote and author
+    This class works with docx type files, parses the quote and author
     and returns the QuoteModel object.
     """
 
-    importaciones = ['csv']
+    importaciones = ['docx']
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
-        """Parse CSV type file.
+        """Parse DOCX type file.
 
         The classmethod 'parse()' extract the 'quote' and 'author'
         return the list of QuoteModel.
         Parameters:
-            path (str) : path of the csv file.
+            path (str) : path of the docx file.
         Return:
             List[QuoteModel object] : List of QuoteModel object
         """
@@ -31,10 +32,12 @@ class CSVImporter(IngestorInterface):
             raise Exception('cannot ingest exception')
 
         quotes = []
-        df = pandas.read_csv(path, header=0)
+        doc = docx.Document(path)
 
-        for index, row in df.iterrows():
-            new_quote = QuoteModel(row['body'], row['author'])
-            quotes.append(new_quote)
+        for para in doc.paragraphs:
+            if para.text != "":
+                parse = para.text.split(' - ')
+                new_quote = QuoteModel(parse[0], parse[1])
+                quotes.append(new_quote)
 
         return quotes

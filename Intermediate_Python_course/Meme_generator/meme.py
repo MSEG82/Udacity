@@ -1,17 +1,16 @@
+"""Generate a meme given an path and a quote."""
+
 import os
 import random
-
 import argparse
 import QuoteEngine
 import MemeEngine
-
 from QuoteEngine import Ingestor, QuoteModel
 from MemeEngine import MemeEngine
 
 
-
 def generate_meme(path=None, body=None, author=None):
-    """ Generate a meme given an path and a quote """
+    """Generate a meme given an path and a quote."""
     img = None
     quote = None
 
@@ -27,6 +26,8 @@ def generate_meme(path=None, body=None, author=None):
 
     if body is None:
         quote_files = ['./_data/DogQuotes/DogQuotesTXT.txt',
+                       './_data/DogQuotes/DogQuotesDOCX.docx',
+                       './_data/DogQuotes/DogQuotesPDF.pdf',
                        './_data/DogQuotes/DogQuotesCSV.csv']
         quotes = []
         for f in quote_files:
@@ -46,14 +47,14 @@ def generate_meme(path=None, body=None, author=None):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Generate a meme.')
     parser.add_argument('--path', type=str,
-                       default=None, 
-                       help='Path where you have the image') 
+                        default=None,
+                        help='Path where you have the image')
     parser.add_argument('--body', type=str,
-                       default=None,  
-                       help='Message you want to introduce in the image')
+                        default=None,
+                        help='Message you want to introduce in the image')
     parser.add_argument('--author', type=str,
-                       default=None,
-                       help='Author of the introduced message')
-    
+                        default=None,
+                        help='Author of the introduced message')
+
     args = parser.parse_args()
     print(generate_meme(args.path, args.body, args.author))

@@ -1,8 +1,4 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Jul 15 08:44:50 2021
+"""Import all created classes from related files."""
 
-@author: U324451
-"""
 
 from .MemeEngine import MemeEngine
