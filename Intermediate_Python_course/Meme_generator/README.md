@@ -1,4 +1,4 @@
-#Meme_generator Project
+**Meme_generator Project**
 
 Second Project in the Udacity Intermediate Python Nanodegree 
 
