@@ -63,4 +63,9 @@ sudo apt-get install -y xpdf
 
 To run the app.py module, flask must be isntalled. Before you get started, make sure you have the latest version of flask installed by running:
 
+<<<<<<< HEAD:Intermediate_Python_course/Meme_generator/README.md
 pip install flask -U
+=======
+pip install flask -U
+
+>>>>>>> c162fd161d09fd016cadf966769600eadefac6e1:Intermediate_Python_course/Meme_generator/README.py
