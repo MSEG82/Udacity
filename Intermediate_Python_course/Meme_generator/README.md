@@ -34,6 +34,7 @@ In the MemeEngine class, first, the image is resized and then the quote is overw
 
 
 **Package our Application**
+
 *meme.py*
 This script returns a path to a generated meme that is generated using the previous Quote Engine & Meme Engine modules.
 
