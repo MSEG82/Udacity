@@ -44,10 +44,12 @@ The app uses the Quote Engine Module and Meme Generator Modules to generate a ra
 It also captures an image from a user submitted URL.
 
 **Output Folders**
+
 The output memes generated are saved in tmp/static folders when running "meme.py"/ "app.py".
 
 *tmp*: Stores the output memes generated when "meme.py" script is run
-static: Stores the output memes generated when "app.py" script is run
+
+*static*: Stores the output memes generated when "app.py" script is run
 
 *Requirements.txt*
 This file contains the complete list of python dependencies used throughout this project
